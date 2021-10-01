@@ -59,11 +59,7 @@ public class ShoppingCart {
 	}
 	
 	public void removeItem(Item item) {
-		if (this.shoppingCart.containsKey(item) && this.shoppingCart.get(item) > 1) {
-			this.shoppingCart.put(item, this.shoppingCart.get(item) - 1);
-		} else {
-			this.shoppingCart.remove(item);
-		}
+		this.shoppingCart.remove(item);
 	}
 	
 	public void adjustQuantity(Item item, int quantity) {

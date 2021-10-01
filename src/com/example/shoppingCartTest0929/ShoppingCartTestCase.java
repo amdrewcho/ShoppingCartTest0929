@@ -37,7 +37,7 @@ class ShoppingCartTestCase {
 		assertEquals(2, sc.getShoppingCart().get(apple));
 	}
 
-	// Removing duplicate item updates quantity
+	// Removing item from cart
 	@Test
 	public void removeIsValid() {
 		Item apple = new Item("Apple", 0.99, false);
@@ -45,7 +45,7 @@ class ShoppingCartTestCase {
 		sc.addItem(apple);
 		sc.addItem(apple);
 		sc.removeItem(apple);
-		assertEquals(2, sc.getShoppingCart().get(apple));
+		assertEquals(0, sc.cartSize());
 	}
 
 	// Cart sub-total is properly calculated
@@ -82,15 +82,15 @@ class ShoppingCartTestCase {
 		assertEquals(1, sc.getShoppingCart().get(apple));
 	}
 	
-	// Adjusting quantity to zero updates cart display
+	// Adjusting quantity updates cart display
 	@Test
-	public void adjustQuantityToZero() {
+	public void adjustQuantityToDisplay() {
 		Item apple = new Item("Apple", 0.99, false);
 		Item orange = new Item("Orange", 0.49, true);
 		sc.addItem(apple);
 		sc.addItem(apple);
 		sc.addItem(orange);
-		sc.adjustQuantity(apple, 0);
-		assertEquals("Item: Orange, Price: **$0.49**, Quantity: 1\n", sc.displayCart());
+		sc.adjustQuantity(apple, 1);
+		assertEquals("Item: Apple, Price: $0.99, Quantity: 1\nItem: Orange, Price: **$0.49**, Quantity: 1\n", sc.displayCart());
 	}
 }
